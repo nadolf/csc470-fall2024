@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ecaefac034d2149c1bd89fd4ac3188bc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cubeRenderer: {instanceID: 0}
+  - dirtMaterial: {fileID: 2100000, guid: bfb647eb663714daa87732304f7c66ee, type: 2}
+  - grassMaterial: {instanceID: 0}
+  - plantMaterial: {fileID: 2100000, guid: 05d535b06d1114cc2a172cec52bc89c2, type: 2}
+  - plantPrefab: {fileID: 2647663281199574629, guid: c2f4cb6d3a4434154aba04d7704b2bcd, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
