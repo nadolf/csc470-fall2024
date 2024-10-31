@@ -29,7 +29,7 @@ public class PlatformerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         StartCoroutine(ChangeTextAfterDelay());
-        timeRemaining = 28f;
+        timeRemaining = 38f;
         timerText.text = "Time: " + timeRemaining;
         counterText.text = "Donuts: " + score;
 
@@ -54,7 +54,7 @@ public class PlatformerController : MonoBehaviour
         yield return new WaitForSeconds(3f);
         if (directionsText != null)
         {
-            directionsText.text = "Your 20 Seconds Starts now!";
+            directionsText.text = "Your 30 Seconds Starts now!";
         }
 
         yield return new WaitForSeconds(2f);
