@@ -28,7 +28,8 @@ public class PlatformerController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        timeRemaining = 15f;
+        StartCoroutine(ChangeTextAfterDelay());
+        timeRemaining = 28f;
         timerText.text = "Time: " + timeRemaining;
         counterText.text = "Donuts: " + score;
 
@@ -37,6 +38,31 @@ public class PlatformerController : MonoBehaviour
         {
             jumpPowers[i] = jumpVelocity * (1f - i * 0.1f);
         }
+    }
+
+    IEnumerator ChangeTextAfterDelay()
+    {
+        // Wait for 3 seconds
+        yield return new WaitForSeconds(3f);
+
+        // Change the text to "Hi"
+        if (directionsText != null)
+        {
+            directionsText.text = "Your first task is to collect all 6 donuts!";
+        }
+
+        yield return new WaitForSeconds(3f);
+        if (directionsText != null)
+        {
+            directionsText.text = "Your 20 Seconds Starts now!";
+        }
+
+        yield return new WaitForSeconds(2f);
+        if (directionsText != null)
+        {
+            directionsText.text = "";
+        }
+
     }
 
     void Update()
@@ -120,7 +146,7 @@ public class PlatformerController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent != null && other.transform.parent.name == "Donuts")
+        if (other.transform.parent != null && other.transform.parent.name == "Donuts" && other.name != "platform1 (2)")
         {
             Destroy(other.gameObject);
             score++;
