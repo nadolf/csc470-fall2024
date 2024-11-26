@@ -215,5 +215,6 @@ public class GameManager : MonoBehaviour
         {
             spawnSpeedText.text = "Better Luck Next Time! Time's up!";
         }
+        spawnSpeedText.gameObject.SetActive(true);
     }
 }
