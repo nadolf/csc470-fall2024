@@ -30,9 +30,11 @@ public class GameManager : MonoBehaviour
 
     private float lastSpawnTime;
     private float spawnInterval;
+    private bool gameStarted = false; // Game start flag
     private bool gameEnded = false; 
     private float timeLimit = 90f; 
     private float remainingTime;
+
     void OnEnable()
     {
         if (GameManager.instance == null)
@@ -54,14 +56,12 @@ public class GameManager : MonoBehaviour
         totalSpawnedUnits = initialUnits; 
         UpdateProgressText();
 
-        lastSpawnTime = Time.time; 
         remainingTime = timeLimit; 
-        StartCoroutine(SpawnUnitAutomatically());
     }
 
     void Update()
     {
-        if (gameEnded) return;
+        if (!gameStarted || gameEnded) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
 
     private float CalculateCleanPercentage()
     {
+        if (totalSpawnedUnits == 0) return 0f;
         return ((float)destroyedUnits / totalSpawnedUnits) * 100f;
     }
 
@@ -137,6 +138,8 @@ public class GameManager : MonoBehaviour
     public void ClosePopUpWindow()
     {
         popUpWindow.SetActive(false);
+        gameStarted = true;  // Start the game when the pop-up is closed
+        StartCoroutine(SpawnUnitAutomatically());
     }
 
     IEnumerator SpawnUnitAutomatically()
