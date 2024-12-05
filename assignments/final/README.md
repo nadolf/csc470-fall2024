@@ -41,14 +41,14 @@ Functioning energy bar and timer system.
 Start screen with a basic playable map (minimal decoration).
 
 ### Target
-Polished character animations for walking, jumping, and collecting items.
+Polished character animations for walking and jumping.
 Moderately detailed map with decorations (e.g., plants, rocks).
-Working audio for background music and basic sound effects.
+Working audio for background music.
 
 ### High Bar
-Full character animations and sound effects for actions like jumping and collecting.
-Immersive background music and sound effects synced with gameplay events.
-Improved UI design with energy and timer indicators styled to fit the theme.
+Character animations and sound effects for walking.
+Background music synced with gameplay events.
+energy and timer indictor.
 
 
 ## Timeline
@@ -67,21 +67,19 @@ Program item collection system (interact with items to increase energy).
 Add energy depletion system and connect it to the timer.
 Implement the energy bar UI and integrate it with gameplay.
 Create a simple start menu with a "Start Game" button and placeholder settings options.
-Test and debug basic gameplay loop.
 
 **December 3 - December 6**
 
-Replace placeholder assets with polished models or sprites (character, items, and environment decorations).
+Replace placeholder assets with polished models or sprites.
 Design and implement a more detailed environment for the game.
-Integrate background music and basic sound effects (e.g., for item collection, jumping).
+Integrate background music and basic sound effects.
 Add basic character animations for walking, jumping, and collecting items.
 
 **December 7 - December 9**
 
-Refine the timer system to include warnings when energy is low.
-Add a “Game Over” screen with a retry and return-to-menu option.
+Refine the timer system.
+Add a “Game Over” screen option.
 Include a counter for collected items in the HUD.
-Playtest the game to ensure there are no issues with getting stuck, unbounded areas, or missing features.
 
 **December 10 - December 11**
 
