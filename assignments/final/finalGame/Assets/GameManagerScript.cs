@@ -20,8 +20,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text gameStatusText;
     public TMP_Text resultsText;
     public TMP_Text timerText;
+    public GameObject nextButton;
+    public GameObject headerPanel;
+    public GameObject HowToPlayPanel;
     public GameObject startButton;
-    public GameObject startPanel;
 
     void Start()
     {
@@ -98,14 +100,21 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    public void CloseScreen(){
+        if (nextButton != null)
+            nextButton.SetActive(false);
+        if (headerPanel != null)
+            headerPanel.SetActive(false);
+    }
+
     public void StartGame()
     {
         ifGameStarted = true;
         timer = gameDuration;
         if (startButton != null)
             startButton.SetActive(false);
-        if (startPanel != null)
-            startPanel.SetActive(false);
+        if (HowToPlayPanel != null)
+            HowToPlayPanel.SetActive(false);
 
         Time.timeScale = 1f;
     }
