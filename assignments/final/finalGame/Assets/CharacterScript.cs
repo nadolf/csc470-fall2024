@@ -8,6 +8,8 @@ public class CharacterScript : MonoBehaviour
     public GameObject character;
     public GameObject cameraObject;
     public Animator animator;
+    public AudioSource footstepAudio;
+
     float movementSpeed = 3f;
     float rotateSpeed = 50f;
     float jumpVelocity = 4f;
@@ -55,6 +57,7 @@ public class CharacterScript : MonoBehaviour
         if (energy > 0)
         {
             Vector3 moveDirection = Vector3.zero;
+            bool isMoving = false;
 
             // Move forward
             if (Input.GetKey(KeyCode.UpArrow))
@@ -62,6 +65,7 @@ public class CharacterScript : MonoBehaviour
                 moveDirection += transform.forward;
                 animator.SetBool("IsRunning", true);
                 animator.SetBool("IsRunningBackwards", false);
+                isMoving = true;
             }
             // Move backward
             else if (Input.GetKey(KeyCode.DownArrow))
@@ -69,6 +73,7 @@ public class CharacterScript : MonoBehaviour
                 moveDirection += -transform.forward;
                 animator.SetBool("IsRunningBackwards", true);
                 animator.SetBool("IsRunning", false);
+                isMoving = true;
             }
             else
             {
@@ -86,6 +91,17 @@ public class CharacterScript : MonoBehaviour
                 transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
             }
             transform.position += moveDirection * movementSpeed * Time.deltaTime;
+
+            // Sound effect when Walking
+
+            if (isMoving && isGrounded && !footstepAudio.isPlaying)
+            {
+                footstepAudio.Play();
+            }
+            else if (!isMoving || !isGrounded)
+            {
+                footstepAudio.Stop();
+            }
         }
     }
 
@@ -96,6 +112,7 @@ public class CharacterScript : MonoBehaviour
             verticalVelocity = jumpVelocity;
             isGrounded = false;
             animator.SetBool("IsJumping", true); // Play jumping animation
+            footstepAudio.Stop();
         }
         if (!isGrounded)
         {
