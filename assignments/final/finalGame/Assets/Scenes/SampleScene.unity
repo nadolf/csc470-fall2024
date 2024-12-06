@@ -3589,6 +3589,14 @@ PrefabInstance:
       propertyPath: footstepAudio
       value: 
       objectReference: {fileID: 1423426009}
+    - target: {fileID: 8277575660333184465, guid: 79cafd06e78934cbfb4f442b5a6903bc, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277575660333184465, guid: 79cafd06e78934cbfb4f442b5a6903bc, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8502483764080682897, guid: 79cafd06e78934cbfb4f442b5a6903bc, type: 3}
       propertyPath: m_Avatar
       value: 

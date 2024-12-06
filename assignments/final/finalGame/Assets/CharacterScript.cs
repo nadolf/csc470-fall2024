@@ -12,7 +12,7 @@ public class CharacterScript : MonoBehaviour
 
     float movementSpeed = 3f;
     float rotateSpeed = 50f;
-    float jumpVelocity = 4f;
+    float jumpVelocity = 7f;
     float gravity = -9.8f;
     float verticalVelocity = 0f;
     bool isGrounded = true;
