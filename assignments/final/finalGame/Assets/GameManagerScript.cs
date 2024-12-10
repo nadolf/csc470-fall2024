@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,10 +28,11 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject controlsPanel;
     public GameObject controlsButton;
+    public Image EnergyBar;
+    private float MaxEnergy = 100f;
 
     void Start()
     {
-        // Singleton pattern to ensure only one instance of GameManager exists
         if (instance == null)
         {
             instance = this;
@@ -40,20 +42,23 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject); // Make this persist across scenes
+        DontDestroyOnLoad(gameObject);
+        UpdateEnergyBar();
     }
 
     void Update()
     {
-        if (!ifGameStarted) return; // Prevent game actions if not started
+        if (!ifGameStarted) return;
 
         if (!isGameOver)
         {
             // Handle energy drain
             energy -= energyDrainRate * Time.deltaTime;
-            energy = Mathf.Clamp(energy, 0, 100); // Ensure energy stays within bounds
+            energy = Mathf.Clamp(energy, 0, MaxEnergy);
             if (energyText != null)
-                energyText.text = "Energy: " + Mathf.FloorToInt(energy);
+                energyText.text = "Energy: ";
+
+            UpdateEnergyBar();
 
             if (energy <= 0)
                 GameOver("Out of Energy");
@@ -72,7 +77,7 @@ public class GameManager : MonoBehaviour
                 GameOver("Game Over!");
             }
 
-            movementSpeed = 3f * (energy / 100f);
+            movementSpeed = 3f * (energy / MaxEnergy);
         }
 
         if (scoreText != null)
@@ -82,7 +87,8 @@ public class GameManager : MonoBehaviour
     public void CollectKrabbyPatty()
     {
         energy += 10f;
-        energy = Mathf.Clamp(energy, 0, 100);
+        energy = Mathf.Clamp(energy, 0, MaxEnergy);
+        UpdateEnergyBar();
     }
 
     public void CollectJellyfish()
@@ -104,14 +110,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void CloseStartScreen(){
+    public void CloseStartScreen()
+    {
         if (nextButton != null)
             nextButton.SetActive(false);
         if (headerPanel != null)
             headerPanel.SetActive(false);
     }
 
-    public void CloseControlsScreen(){
+    public void CloseControlsScreen()
+    {
         if (controlsButton != null)
             controlsButton.SetActive(false);
         if (controlsPanel != null)
@@ -130,4 +138,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    private void UpdateEnergyBar()
+    {
+        if (EnergyBar != null)
+        {
+            EnergyBar.fillAmount = energy / MaxEnergy;
+        }
+    }
 }
