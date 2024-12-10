@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public GameObject headerPanel;
     public GameObject HowToPlayPanel;
     public GameObject startButton;
+    public GameObject gameOverPanel;
+    public GameObject controlsPanel;
+    public GameObject controlsButton;
 
     void Start()
     {
@@ -66,7 +69,7 @@ public class GameManager : MonoBehaviour
 
             if (timer <= 0)
             {
-                GameOver("Times Up!");
+                GameOver("Game Over!");
             }
 
             movementSpeed = 3f * (energy / 100f);
@@ -90,6 +93,7 @@ public class GameManager : MonoBehaviour
     private void GameOver(string gameStatusMessage)
     {
         isGameOver = true;
+        gameOverPanel.SetActive(true);
 
         if (gameStatusText != null)
             gameStatusText.text = gameStatusMessage;
@@ -100,11 +104,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void CloseScreen(){
+    public void CloseStartScreen(){
         if (nextButton != null)
             nextButton.SetActive(false);
         if (headerPanel != null)
             headerPanel.SetActive(false);
+    }
+
+    public void CloseControlsScreen(){
+        if (controlsButton != null)
+            controlsButton.SetActive(false);
+        if (controlsPanel != null)
+            controlsPanel.SetActive(false);
     }
 
     public void StartGame()

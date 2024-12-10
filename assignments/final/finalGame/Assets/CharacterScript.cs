@@ -5,7 +5,7 @@ using TMPro;
 
 public class CharacterScript : MonoBehaviour
 {
-    public GameObject character;
+    public CharacterController character;
     public GameObject cameraObject;
     public Animator animator;
     public AudioSource footstepAudio;
